@@ -1,0 +1,30 @@
+<h1><%= @owner.name %></h1>
+ 
+<h2><%= @owner.name %>'s dogs:</h2>
+<table>
+		<tr>
+			<th>Name</th>
+			<th>Breed</th>
+			<th>Age</th>
+			<th>Sex</th>
+		</tr>
+	<% @owner.dogs.each do |dog|%>
+		<tr>
+			<td><strong><%=dog.name%></strong></td>
+			<td><%=dog.breed%></td>
+			<td><%= dog.age%></td>
+			<% if dog.sex == 'M' %>
+			<td>male</td>
+			<% else %>
+			<td>female</td>
+			<% end %>
+		</tr>
+		<% end %>
+	</table>
+	<div>
+		<p>Number of Puppies: <%= @owner.dogs.count{|dog| dog.age <= 1}%></p>
+		<p>Number of Mutts: <%= @owner.dogs.count{|dog| dog.breed.downcase == 'mutt'}%></p>
+		<p>Number of Males: <%= @owner.dogs.count{|dog| dog.sex == 'M'}%></p>
+		<p>Number of Females: <%= @owner.dogs.count{|dog| dog.sex == 'F'}%></p>
+	</div>
+ 

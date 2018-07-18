@@ -1,0 +1,52 @@
+<h1>Dogs up for Adoption:</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Breed</th>
+    <th>Age</th>
+    <th>Sex</th>
+    <th>Shelter</th>
+    <th>Adopt</th>
+  </tr>
+<% @dogs.all.each do |dog|%>
+  <% if !dog.owner %>
+  <tr>
+ 	
+		<td><a href="/dogs/<%="#{dog.id}"%>"><%= dog.name %></a></td>
+
+    <td><%= dog.breed %></td>
+		<td><%= dog.age %></td> 
+		<td><%= dog.sex %></td>
+    <td>shelter link </td>
+    <td><button><a href="/dogs/#{dog.id}/adopt">Adopt Me!</a></button> </td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+
+<h1>Adopted Dogs:</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Breed</th>
+    <th>Age</th>
+    <th>Sex</th>
+    <th>Owner</th>
+	</tr>
+	
+<% @dogs.each do |dog|%>
+  <% if dog.owner_id %>
+  <tr>
+		<td><a href="/dogs/#{dog.id}"><%= dog.name %></td>
+    <td><%= dog.breed %></td>
+		<td><%= dog.age %></td>
+		<td><%= dog.sex %></td>
+ 
+    <td>dog owner link </td>
+    <td><button><a href="/dogs/<%=dog.id%>/abandon">Abandon Me!</a>
+  </tr>
+  </tr>
+  <% end %>
+<% end %>
+</table>

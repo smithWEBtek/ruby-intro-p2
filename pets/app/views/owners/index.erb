@@ -1,0 +1,20 @@
+<h1>Owners:</h1>
+
+<table>
+	<tr>
+		<th>Owner</th>
+		<th>Puppies</th>
+		<th>Mutts</th>
+		<th>Males</th>
+		<th>Females</th>
+	</tr>
+	<% @owners.all.reject{|owner| owner.dogs.length == 0}.each do |owner| %>
+		<tr>
+			<td><a href="/owners/<%="#{owner.id}"%>"><%= owner.name %></a></td>
+			<td><%= owner.dogs.count{|dog| dog.age <= 1}%></td>
+			<td><%= owner.dogs.count{|dog| dog.breed.downcase == 'mutt'}%></td>
+			<td><%= owner.dogs.count{|dog| dog.sex == 'M'}%></td>
+			<td><%= owner.dogs.count{|dog| dog.sex == 'F'}%></td>
+		</tr>
+	<% end %>
+</table>

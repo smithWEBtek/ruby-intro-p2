@@ -1,0 +1,23 @@
+ <h1><strong><%= @dog.name%></strong></h1>
+    <ul>
+      <li>Breed: <%= @dog.breed%> </li>
+      <li>Age: <%= @dog.age%></li>
+      <% if @dog.sex == 'M' %>
+        <li>Sex: male</li>
+      <% else %>
+        <li>Sex: female</li>
+      <% end %>
+      <% if @dog.shelter %>
+				<li>Shelter: <a href="/shelters/<%="#{@dog.shelter_id}"%>"><%= @dog.shelter.name %></a></td>
+
+
+
+        <li><a href="/dogs/<%="#{@dog.id}/adopt" %>">Adopt me!</a></li>
+      <% elsif @dog.owner %>
+				<li>Owner: <a href="/owners/<%="#{@dog.owner_id}"%>"><%= @dog.owner.name %></a></td>
+        <li> <%= link_to "Abandon!", "/dogs/#{@dog.id}/abandon" %></li>
+      <% end %>
+      </ul>
+
+
+
